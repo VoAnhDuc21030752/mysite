@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
-
+  allow_unauthenticated_access only: %i[ index show ]
   def index
     @products = Product.all
   end
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
     @product.destroy
     redirect_to products_path
   end
-  
+
   private
     def set_product
       @product = Product.find(params[:id])
